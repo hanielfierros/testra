@@ -1,0 +1,22 @@
+# Dependencias y cachés de Python
+__pycache__/
+*.pyc
+
+# Editor / SO
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Node
+node_modules/
+
+# Temporales y copias de seguridad
+*.bak
+*.tmp
+*.log
+
+# Archivo de instrucciones local (no forma parte de la app)
+ins.txt
+
+# Imagen fuente local (la copia canónica está en assets/19.jpg)
+/19.jpg

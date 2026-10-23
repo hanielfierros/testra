@@ -1,0 +1,170 @@
+:root {
+  --bg: #0b1220;
+  --panel: rgba(16, 24, 40, 0.86);
+  --panel-border: rgba(255, 255, 255, 0.12);
+  --text: #eef2f7;
+  --muted: #9aa7b8;
+  --accent: #127ae3;
+  --accent-2: #1fb5ff;
+  --ok: #2ecc71;
+  --warn: #f1c40f;
+  --err: #e74c3c;
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  overscroll-behavior: none;
+}
+
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: calc(env(safe-area-inset-top) + 8px) 14px 8px;
+  background: var(--panel);
+  border-bottom: 1px solid var(--panel-border);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.topbar h1 { font-size: 17px; margin: 0; letter-spacing: 0.5px; }
+
+.pill {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+.pill.on { background: var(--ok); color: #06270f; }
+.pill.off { background: #333b4a; color: var(--muted); }
+
+.view {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+}
+
+#camera {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #000;
+}
+
+#overlays .overlay {
+  position: absolute;
+  z-index: 5;
+  border: 1px solid var(--panel-border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.55);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+#overlays .overlay img,
+#overlays .overlay iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  object-fit: cover;
+}
+
+.hud {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: calc(env(safe-area-inset-bottom) + 76px);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 46vh;
+  overflow-y: auto;
+}
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  padding: 10px 12px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.card h2 { margin: 0 0 6px; font-size: 13px; color: var(--accent-2); text-transform: uppercase; letter-spacing: 0.6px; }
+.card dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 2px 12px; font-size: 13px; }
+.card dt { color: var(--muted); }
+.card dd { margin: 0; text-align: right; font-variant-numeric: tabular-nums; }
+
+.point { padding: 6px 0; border-top: 1px solid var(--panel-border); }
+.point:first-child { border-top: 0; }
+.point-head { display: flex; justify-content: space-between; align-items: center; font-size: 14px; }
+.point-status { font-size: 12px; color: var(--muted); }
+.point-status.active { color: var(--ok); font-weight: 600; }
+.point-status.manual { color: var(--warn); font-weight: 600; }
+.point-dist { font-size: 12px; color: var(--muted); margin: 2px 0; font-variant-numeric: tabular-nums; }
+.mini {
+  font-size: 12px;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--panel-border);
+  border-radius: 8px;
+  padding: 6px 10px;
+}
+.mini:active { background: rgba(255, 255, 255, 0.16); }
+
+.error {
+  position: absolute;
+  z-index: 15;
+  left: 12px;
+  right: 12px;
+  top: calc(env(safe-area-inset-top) + 56px);
+  background: rgba(231, 76, 60, 0.92);
+  color: #fff;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 13px;
+}
+
+.controls {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 20;
+  display: flex;
+  gap: 8px;
+  padding: 10px 12px calc(env(safe-area-inset-bottom) + 10px);
+  background: var(--panel);
+  border-top: 1px solid var(--panel-border);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.controls button {
+  flex: 1;
+  border: 0;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 13px 8px;
+  color: var(--text);
+}
+.controls button.primary { background: var(--accent); color: #fff; }
+.controls button.primary:disabled { background: #2a3b52; color: var(--muted); }
+.controls button.secondary { background: rgba(255, 255, 255, 0.08); border: 1px solid var(--panel-border); }
+
+.hidden { display: none !important; }
